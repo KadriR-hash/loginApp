@@ -1,4 +1,4 @@
-package tn.enicarthage.springboot;
+package tn.enicarthage.springboot.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,10 +11,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import tn.enicarthage.springboot.modal.Role;
+import tn.enicarthage.springboot.modal.User;
+import tn.enicarthage.springboot.repo.RoleRepo;
+import tn.enicarthage.springboot.repo.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +30,7 @@ public class UserServiceImp implements UserService , UserDetailsService {
 	
 	private  final UserRepository userRepo;
 	private  final RoleRepo roleRepo;
-	
+	private final PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,7 +52,10 @@ public class UserServiceImp implements UserService , UserDetailsService {
 	
 	@Override
 	public User saveUser(User user) {
+		
 		log.info("Saving new user {}",user.getUsername());
+		// Encoding the password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepo.save(user);
 	}
 

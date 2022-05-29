@@ -1,6 +1,9 @@
-package tn.enicarthage.springboot;
+package tn.enicarthage.springboot.service;
 
 import java.util.List;
+
+import tn.enicarthage.springboot.modal.Role;
+import tn.enicarthage.springboot.modal.User;
 
 public interface UserService {
 	

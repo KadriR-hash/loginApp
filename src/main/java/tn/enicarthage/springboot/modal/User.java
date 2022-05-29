@@ -1,4 +1,4 @@
-package tn.enicarthage.springboot;
+package tn.enicarthage.springboot.modal;
 
 import java.util.ArrayList;
 import java.util.Collection;

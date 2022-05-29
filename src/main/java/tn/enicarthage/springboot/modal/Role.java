@@ -1,4 +1,4 @@
-package tn.enicarthage.springboot;
+package tn.enicarthage.springboot.modal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
